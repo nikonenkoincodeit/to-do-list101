@@ -1,10 +1,14 @@
-
-
 function createMarkup(arr = []) {
-    return arr.map(({id, value, checked}) => `<li class="item ${checked ? 'checked' : ''} " data-id="${id}">
-<p class="text">${value}</p>
+  return arr
+    .map(
+      ({ id, message, checked }) => `<li class="item ${
+        checked ? 'checked' : ''
+      } " data-id="${id}">
+<p class="text">${message}</p>
 <button type="button" class="button">x</button>
-</li>`).join('')
+</li>`
+    )
+    .join('');
 }
 
-export { createMarkup }
+export { createMarkup };
