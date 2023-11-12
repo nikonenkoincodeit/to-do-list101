@@ -43,10 +43,7 @@ function btnClick(e) {
   if (!e.target.classList.contains("button")) return;
   const parantRef = e.target.closest(".item");
   const varRef = parantRef.dataset.id;
-  parantRef.remove()
-  const dataArr = getData().filter(({id})=> String(id)!== varRef)
-   saveData(dataArr);
- 
-
- 
+  parantRef.remove();
+  const dataArr = getData().filter(({ id }) => String(id) !== varRef);
+  saveData(dataArr);
 }
