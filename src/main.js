@@ -1,11 +1,11 @@
-import { formRef, listRef } from './refs';
-import { saveData, getData } from './api';
-import { createMarkup } from './markup';
+import { formRef, listRef } from "./refs";
+import { saveData, getData } from "./api";
+import { createMarkup } from "./markup";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/style.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css";
 
-formRef.addEventListener('submit', handleForm);
+formRef.addEventListener("submit", handleForm);
 
 function handleForm(event) {
   event.preventDefault();
@@ -34,6 +34,19 @@ function init() {
 }
 
 function addMarkup(markup) {
-  listRef.insertAdjacentHTML('beforeend', markup);
+  listRef.insertAdjacentHTML("beforeend", markup);
 }
 init();
+listRef.addEventListener("click", btnClick);
+
+function btnClick(e) {
+  if (!e.target.classList.contains("button")) return;
+  const parantRef = e.target.closest(".item");
+  const varRef = parantRef.dataset.id;
+  parantRef.remove()
+  const dataArr = getData().filter(({id})=> String(id)!== varRef)
+   saveData(dataArr);
+ 
+
+ 
+}
