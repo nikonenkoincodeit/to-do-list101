@@ -1,6 +1,6 @@
 const STORAGE_KEY = "tu-do-list";
 
-const loadForm = () => {
+export const loadForm = () => {
   try {
     const savedData = localStorage.getItem(STORAGE_KEY);
     return savedData ? JSON.parse(savedData) : [];

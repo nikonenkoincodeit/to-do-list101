@@ -1,10 +1,16 @@
 import { userDataEl, listEl } from "./refs";
-import { saveForm } from "./api";
+import { saveForm, loadForm } from "./api";
 import { createMarkup } from "./markup";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
-
+init();
+function init() {
+  const loadedForm = loadForm();
+  console.log(loadedForm);
+  if (loadedForm.length > 0) {
+    insertMarkup(createMarkup(loadedForm));
+  }
+}
 function onSubmit(event) {
   event.preventDefault();
 
@@ -29,4 +35,17 @@ function createObject(message) {
 }
 function insertMarkup(markup) {
   listEl.insertAdjacentHTML("beforeend", markup);
+}
+
+listEl.addEventListener("click", deleteElement);
+
+function deleteElement(event) {
+  if (event.nodeName != "BUTTON") {
+    return;
+  }
+  const element = event.target.closest("li.item");
+  console.log(element.dataset.id);
+  const loadedForm = loadForm();
+
+  //  saveForm(newObject);
 }
